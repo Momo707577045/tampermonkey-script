@@ -107,34 +107,55 @@
         {
             label: '排序方向',
             type: 'param',
-            text: `orderDirection   'asc' | 'desc'`,
+            text: `orderDirection`,
+        },
+        {
+            label: '值',
+            type: 'value',
+            text: `'asc' | 'desc'`,
         },
         {
             label: '时间类型',
             type: 'param',
-            text: `timeRangeType   'today' | 'yesterday' | 'currentWeek' | 'lastWeek' | 'last7Day' | 'last30Day' | 'currentMonth' | 'lastMonth' |  'custom'  `,
+            text: `timeRangeType`,
+        },
+        {
+            label: '值',
+            type: 'value',
+            text: `'today' | 'yesterday' | 'currentWeek' | 'lastWeek' | 'last7Day' | 'last30Day' | 'currentMonth' | 'lastMonth' |  'custom'`,
         },
         {
             label: '开始时间',
             type: 'param',
-            text: `startTime   2025-11-24 15:30:00`,
+            text: `startTime`,
+        },
+        {
+            label: '值',
+            type: 'value',
+            text: `2025-11-24 15:30:00`,
         },
         {
             label: '起止时间',
             type: 'param',
-            text: `endTime   2025-11-24 15:30:00`,
+            text: `endTime`,
+        },
+        {
+            label: '值',
+            type: 'value',
+            text: `2025-11-24 15:30:00`,
         },
     ];
 
     // 添加样式
     GM_addStyle(`
         .custom-copy-container {
+            position: fixed;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-left: 15px;
             padding: 0 0px;
-            border-right: 1px solid #e8e8e8;
+            z-index: 10001;
         }
 
         .custom-copy-btn {
@@ -152,6 +173,9 @@
         }
         .custom-copy-btn-param {
             background-color: #DA5253;
+        }
+        .custom-copy-btn-value {
+            background-color: #1890ff;
         }
 
         .custom-copy-btn:hover {
@@ -252,7 +276,7 @@
 
         presetTexts.forEach(preset => {
             const button = document.createElement('button');
-            button.className = `custom-copy-btn ${preset.type === 'param' ? 'custom-copy-btn-param' : ''}`;
+            button.className = `custom-copy-btn ${preset.type === 'param' ? 'custom-copy-btn-param' : preset.type === 'value' ? 'custom-copy-btn-value' : ''}`;
             button.textContent = preset.label;
 
             // 点击事件
