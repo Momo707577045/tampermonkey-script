@@ -16,24 +16,114 @@
     // 预设的文案配置 - 可以根据需要修改
     const presetTexts = [
         {
-            label: '复制API地址',
-            type: 'param',
-            text: 'https://api.example.com/v1/endpoint',
+            label: '空返回',
+            text: `{
+    "code": 0,
+    "message": "错误信息",
+    "data": null
+}`,
         },
         {
-            label: '复制Token',
-            type: 'param',
-            text: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+            label: '列表',
+            text: `{
+    "code": 0,
+    "message": "错误信息",
+    "data":{
+        "list|5-20":[{
+            "id": "@id",
+            "name": "@cname",
+        }],
+        "pagination":{
+            "totalItem": 100,
+            "totalPage": 10,
+            "currentPage": 1,
+            "pageSize": 10,
+        },
+    },
+}`,
         },
         {
-            label: '复制测试账号',
-            type: 'param',
-            text: 'test@example.com',
+            label: '详情',
+            text: `{
+    "code": 0,
+    "message": "错误信息",
+    "data":{
+        "id": "@id",
+        "name": "@cname",
+    },
+} `,
         },
         {
-            label: '复制密码',
-            text: 'Test123456',
-        }
+            label: '趋势图',
+            text: `{
+  "code": 0,
+  "message": "错误信息",
+  "data": {
+    "chart|5": [
+      {
+        "key": "@word",
+        "label": "@cname",
+        "records|30": [
+          {
+            "date": "@datetime",
+            "value": "@integer(50,500)"
+          },
+        ]
+      }
+    ]
+  }
+}`,
+        },
+        {
+            label: '导出',
+            text: `{
+  "code": 0,
+  "message": "错误信息",
+  "data": {
+      "id": 12 // 导出任务的 id
+  } 
+}`,
+        },
+        {
+            label: '页大小',
+            type: 'param',
+            text: 'pageSize',
+        },
+        {
+            label: '当前页',
+            type: 'param',
+            text: 'currentPage',
+        },
+        {
+            label: '关键字',
+            type: 'param',
+            text: 'searchKey',
+        },
+        {
+            label: '排序字段',
+            type: 'param',
+            text: 'orderBy',
+        },
+        {
+            label: '排序方向',
+            type: 'param',
+            text: `orderDirection   'asc' | 'desc'`,
+        },
+        {
+            label: '时间类型',
+            type: 'param',
+            text: `timeRangeType   'today' | 'yesterday' | 'currentWeek' | 'lastWeek' | 'last7Day' | 'last30Day' | 'currentMonth' | 'lastMonth' |  'custom'  `,
+        },
+        {
+            label: '开始时间',
+            type: 'param',
+            text: `startTime   2025-11-24 15:30:00`,
+        },
+        {
+            label: '起止时间',
+            type: 'param',
+            text: `endTime   2025-11-24 15:30:00`,
+        },
     ];
 
     // 添加样式
@@ -44,6 +134,7 @@
             gap: 8px;
             margin-left: 15px;
             padding: 0 0px;
+            border-right: 1px solid #e8e8e8;
         }
 
         .custom-copy-btn {
